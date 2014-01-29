@@ -1,0 +1,46 @@
+    puts ( won ? "You won! [#{game[0]}, #{game[1]}]" : "You lost [#{game[0]}, #{game[1]}]" )
+  end
+    puts "Draw! [#{game[0]}, #{game[1]}]"
+def remix(array)
+  alcohols.each_index do |index|
+  alcohols.zip(mixers)
+
+  end
+    winning.each { |scenario| won = true if scenario == game  }
+end
+end
+
+    end
+
+  else
+
+  if game[0] == game[1]
+    cocktails << [alcohols[index], mixers[index]]
+
+
+  alcohols = array.map(&:first)
+
+    ["paper", "rock"],
+  game = [input, winning.sample.first]
+def something
+  mixers.rotate!
+    ["rock", "scissor"]
+  cocktails
+  end
+  won = false
+
+  mixers  = array.map(&:last)
+def something
+  winning = [
+end
+    ["scissor", "paper"],
+  # game[0] == game[1] ? (return "Draw! [#{game[0]}, #{game[1]}]") : ( winning.each { |scenario| won = true if scenario == game  } )
+
+def rps input
+
+  cocktails = []
+end
+  [].tap do |cocktails|
+    alcohols.each_index do |index|
+      cocktails << [alcohols[index], mixers[index]]
+  ]
