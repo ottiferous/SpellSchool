@@ -22,13 +22,14 @@ def sum_range_rec(array, pos=0)
 
 end
 
-def iterative_sum(array)
+def iterative_sum array
 
   sum = 0
 
   array.each do |num|
     sum += num
   end
+
   sum
 end
 
@@ -44,15 +45,16 @@ end
 
 def exp2(num, pow)
   return 1 if pow == 0
+
   return exp2(num, pow/2) ** 2 if pow.even?
   return num * (exp2(num, (pow - 1) / 2) ** 2) if pow.odd?
 end
 
-def deep_dup(ar)
+def deep_dup array
 
   new_array = []
 
-  ar.each do |item|
+  array.each do |item|
     if item.is_a?(Array)
       new_array += [deep_dup(item)].dup
     else
@@ -75,11 +77,11 @@ end
 
 
 # Might be useful later - wasnt what we were supposed to do. Ooops.
-def bsearch_tree(array, target)
-  return target if array == target
+def bsearch_tree(node, target)
+  return target if node == target
   y = nil
-  array.each do |x|
-    if x.is_a? Array
+  node.each do |x|
+    if x.is_a? node.class
       y = bsearch_tree(x, target)
     else
       return target if x == target
@@ -88,21 +90,21 @@ def bsearch_tree(array, target)
   y
 end
 
-def bsearch(array, target)
+def binary_search(array, target)
   midpoint = array.length / 2
   return nil if target > array.last
   return midpoint if array[midpoint] == target
 
   if array[midpoint] < target
-    return midpoint + bsearch(array[midpoint..-1], target)
+    return midpoint + binary_search(array[midpoint..-1], target)
   else
-    return bsearch(array[0..midpoint-1], target)
+    return binary_search(array[0..midpoint-1], target)
   end
 
   nil
 end
 
-def make_change money, currency = [25, 10, 5, 1]
+def make_change(money, currency = [25, 10, 5, 1])
 
   return [] if money == 0
   
@@ -119,26 +121,27 @@ def merge_sort(array)
   return array if array.length <= 1
 
   middle = array.length / 2
+  
   left = merge_sort(array[0...middle])
   right = merge_sort(array[middle..-1])
 
   merge_helper(left, right)
 end
 
-def merge_helper(array1, array2)
+def merge_helper(left, right)
   merged = []
 
-  while !(array1.empty?) || !(array2.empty?)
-    if array1.length > 0 && array2.length > 0
-      if array1.first <= array2.first
-        merged << array1.shift
+  while !(left.empty?) || !(right.empty?)
+    if left.length > 0 && right.length > 0
+      if left.first <= right.first
+        merged << left.shift
       else
-        merged << array2.shift
+        merged << right.shift
       end
-    elsif array1.length > 0
-      merged << array1.shift
-    elsif array2.length > 0
-      merged << array2.shift
+    elsif left.length > 0
+      merged << left.shift
+    elsif right.length > 0
+      merged << right.shift
     end
   end
 
