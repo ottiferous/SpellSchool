@@ -1,32 +1,32 @@
 class TreeNode
-  
+
   attr_accessor :parent, :children, :value
-  
+
   def initialize
     @parent
     @children = []
     @value
   end
-  
+
   def inspect
     puts "-Parent Node: <#{@parent}>"
     puts "-Children: #{@children.count}"
     puts "-Value: #{@value}"
   end
-  
+
   def remove_child(child_node)
 
     child_node.parent = nil
     @children.delete child_node
 
   end
-  
+
   def add_child(child_node)
-    
+
     child_node.remove_child(child_node)
     child_node.parent = self
     @children << child_node
-    
+
   end
 
   # helper method for running searches within nodes
@@ -60,22 +60,21 @@ class TreeNode
      end
      y
   end
-  
+
   # Breadth-first search (not recursive)
   def bfs(target_value)
-    
+
     queue = []
     queue << self
-    
+
     while queue.empty? == false
-      
+
       # Displays the status of queue to make sure search is happening correctly
       # seems to be correct so far
       puts "The Queue is #{queue.map { |x| x.value}}"
-      
 
       check = queue.pop
-      
+
       puts "AT NODE: #{check.value}"
       if check.value == target_value
         return [check.class, check.value]
@@ -84,11 +83,11 @@ class TreeNode
         queue.unshift(*check.children)
       end
     end
-    
+
     # failed to find value - return false
     false
   end
-  
+
   # /TreeNode
 end
 
