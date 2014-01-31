@@ -31,15 +31,14 @@ class TreeNode
   
   # Depth-first search (recursive)
   def dfs(target_value)
-    
-    return [self, self.value] if @value == target_value
+
+    p self.value    
+    return @value if @value == target_value
     return @parent if @children.length == 0
     
     @children.each do |child|
-      if @children.empty?
-        return 
-      else
-        return [@value] + [child.dfs(target_value)]
+      unless @children.empty?
+        child.dfs(target_value)
       end
     end
   end
