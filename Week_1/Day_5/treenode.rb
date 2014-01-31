@@ -28,18 +28,7 @@ class TreeNode
     @children << child_node
     
   end
-  
-  # Depth-first search (recursive)
-  def dfs(target_value)
 
-    p self.value    
-    return @value if @value == target_value
-    return @parent if @children.length == 0
-    
-    @children.each do |child|
-      unless @children.empty?
-        child.dfs(target_value)
-      end
   # helper method for running searches within nodes
   def search(target_value, options = {})
 
@@ -58,6 +47,18 @@ class TreeNode
 
     return (result == target_value ? target_value : false)
   end
+
+  def dfs(target_value)
+
+     puts "At node #{@value}"
+     return target_value if @value == target_value
+     y = nil
+     
+     @children.each do |child_node|
+        y = child_node.dfs(target_value)
+        return target_value if y == target_value
+     end
+     y
   end
   
   # Breadth-first search (not recursive)
