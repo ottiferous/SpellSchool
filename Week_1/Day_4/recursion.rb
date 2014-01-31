@@ -93,8 +93,6 @@ def bsearch(array, target)
   return nil if target > array.last
   return midpoint if array[midpoint] == target
 
-
-
   if array[midpoint] < target
     return midpoint + bsearch(array[midpoint..-1], target)
   else
@@ -104,39 +102,17 @@ def bsearch(array, target)
   nil
 end
 
-def make_change(money, currency = [25, 10, 5, 1])
+def make_change money, currency = [25, 10, 5, 1]
 
   return [] if money == 0
-
+  
   currency.each do |coin|
     if money >= coin
       return [coin] + make_change(money - coin, currency)
-    else
-      return []
     end
-
   end
-#  arr
-end
 
-# # def make_change(money, currency = [25, 10, 5, 1])
-# #
-# #   return [] if money == 0
-# #
-# #   currency.length.times do |number|
-# #
-# #     number.each do |coin|
-# #       if money >= coin
-# #         return [coin] + make_change(money - coin, number)
-# #       else
-# #         return []
-# #       end
-# #
-# #     end
-# #   end
-#
-# #  arr
-# end
+end
 
 def merge_sort(array)
 
