@@ -15,8 +15,8 @@ class TreeNode
   end
   
   def remove_child(child_node)
-    
-    @parent = nil
+
+    child_node.parent = nil
     @children.delete child_node
 
   end
