@@ -52,9 +52,13 @@ class TreeNode
     while queue.empty? == false
       
       # Displays the status of queue to make sure search is happening correctly
+      # seems to be correct so far
       puts "The Queue is #{queue.map { |x| x.value}}"
+      
 
       check = queue.pop
+      
+      puts "AT NODE: #{check.value}"
       if check.value == target_value
         return [check.class, check.value]
       else
@@ -69,8 +73,6 @@ class TreeNode
   
   # /TreeNode
 end
-
-# Get your TA to check your work!
 
 # Sample data to test search
 
