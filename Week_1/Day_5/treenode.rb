@@ -40,7 +40,24 @@ class TreeNode
       unless @children.empty?
         child.dfs(target_value)
       end
+  # helper method for running searches within nodes
+  def search(target_value, options = {})
+
+    defaults = {
+      :method => :dfs
+    }
+
+    options = defaults.merge(options)
+
+    case options[:method]
+    when :dfs
+      result = self.dfs(target_value)
+    when :bfs
+      result = self.bfs(target_value)
     end
+
+    return (result == target_value ? target_value : false)
+  end
   end
   
   # Breadth-first search (not recursive)
