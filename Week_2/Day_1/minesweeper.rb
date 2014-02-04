@@ -28,15 +28,14 @@ class Game
   end
 
   def get_input
-    print "Please enter coordinates [x, y], start with a letter to flag.\n> "
-    input = gets.chomp.split(",")
-    input.map!(&:to_i)
 
-    if input.any? { |num| num > @board.size.max || num < 0 }
-      puts "Please try again, the selection was out of bounds"
-      get_input
+    loop do
+      print "#####\n> "
+      input.map!(&:to_i)
+      input = gets.chomp.split(",")
+      break if valid_input?(input)
     end
-
+      
     if input.length == 3
       input.shift
       flag_location(input)
@@ -44,6 +43,12 @@ class Game
     end
 
     input
+  end
+  
+  def valid_input?(raw_input)
+    raw_input[0].include? @flag_symbol &&
+    raw_input[1].between? (0,@board.size[0]) &&
+    raw_input[2].between? (0,@board.size[1])
   end
 
   def won?
