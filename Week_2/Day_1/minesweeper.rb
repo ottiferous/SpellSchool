@@ -24,7 +24,7 @@ class Game
   end
 
   def already_checked?(position)
-    @board.tiles[position.first][position.last].checked
+    @board.select_tile(position).checked
   end
 
   def get_input
