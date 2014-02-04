@@ -5,10 +5,12 @@ class Game
 
   attr_reader :board
 
-  def initialize(size=[9,9], bombs=10, symbol="F")
+  def initialize(size=[9,9], bombs=10, symbol="\u{24B3}")
     @board = Board.new(size, bombs)
     @bomb_locations = @board.find_bombs
     @flag_symbol = symbol
+    @blank_symbol = "\u{25A2}"
+    @bomb_symbol = "\u{22C7}"
   end
 
   def bomb_tiles
@@ -30,7 +32,7 @@ class Game
   def get_input
 
     loop do
-      print "#####\n> "
+      print "\n> "
       input.map!(&:to_i)
       input = gets.chomp.split(",")
       break if valid_input?(input)
@@ -57,6 +59,7 @@ class Game
 
   def run
     dead = false
+
     until won? || dead
       p @bomb_locations
       @board.draw_board
