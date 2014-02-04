@@ -1,7 +1,7 @@
 class Tile
-
+  
   attr_accessor :display, :flag, :bomb, :checked, :position
-
+  
   def initialize(position, board)
     @display = "_"
     @flag = false
@@ -10,7 +10,7 @@ class Tile
     @position = position
     @board = board
   end
-
+  
   def neighbors
     neighbor_array = []
     (-1..1).each do |x_offset|
@@ -23,13 +23,13 @@ class Tile
         neighbor_array << neighbor_coords
       end
     end
-
+    
     real_neighbors = []
     @board.tiles.each do |row|
       real_neighbors += row.select { |tile| neighbor_array.include?(tile.position) }
     end
-
+    
     real_neighbors
   end
-
+  
 end

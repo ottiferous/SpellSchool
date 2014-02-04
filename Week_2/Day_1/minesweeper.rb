@@ -5,9 +5,10 @@ class Game
 
   attr_reader :board
 
-  def initialize(size=[9,9], bombs=10)
+  def initialize(size=[9,9], bombs=10, symbol="F")
     @board = Board.new(size, bombs)
     @bomb_locations = @board.find_bombs
+    @flag_symbol = symbol
   end
 
   def bomb_tiles
@@ -17,13 +18,9 @@ class Game
   end
 
   def flag_location(location)
-    if @board.tiles[location.first][location.last].flag
-      @board.tiles[location.first][location.last].flag = false
-    else
-      @board.tiles[location.first][location.last].flag = true
-    end
-
-    @board.tiles[location.first][location.last].display = "F"
+    sel_tile = @board.select_tile(location)    
+    sel_tile.flag = (sel_tile.flag ? false : true)
+    sel_tile.display = @flag_symbol
   end
 
   def already_checked?(position)
