@@ -31,18 +31,6 @@ class Board
     self.tiles[coordinates.first][coordinates.last]
   end
   
-  # Lookup the ASCII characters for blocks etc.
-  # to make printing a lot nicer
-  #
-  #
-  #    .1.2.3.4.5.6.
-  #     1 2 3 4 5 6
-  #    _____________
-  # 1  |_|_|_|_|_|_|
-  # 2  |_|_|_|_|_|_|
-  # 3  |_|_|_|_|_|_|
-  # 4  |_|_|_|_|_|_|
-  
   def draw_top_margin
     size.first.times { |num| print "#{num} " }
   end

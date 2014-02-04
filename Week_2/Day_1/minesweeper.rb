@@ -70,7 +70,7 @@ class Game
       else
         result = @board.reveal(choice)
         if result.nil?
-          dead = true                    # you stepped on a landmine
+          dead = true
         end
       end
     end
