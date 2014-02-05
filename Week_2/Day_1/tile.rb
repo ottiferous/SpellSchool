@@ -3,7 +3,7 @@ class Tile
   attr_accessor :display, :flag, :bomb, :checked, :position
   
   def initialize(position, board)
-    @display = "\u{25A2}"
+    @display = "\u25A2"
     @flag = false
     @bomb = false
     @checked = false

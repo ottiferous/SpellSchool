@@ -5,7 +5,7 @@ class Game
 
   attr_reader :board
 
-  def initialize(size=[9,9], bombs=10, symbol="\u{24B3}")
+  def initialize(size=[9,9], bombs=10, symbol="\u24B3")
     @board = Board.new(size, bombs)
     @bomb_locations = @board.find_bombs
     @flag_symbol = symbol

@@ -40,7 +40,7 @@ class Board
     (0..@size.first-1).each do |y|
       (0..@size.last- 1).each do |x|
         print @tiles[x][y].display
-        print "."
+        print "\u25E6"
       end
       print "\n"
     end
