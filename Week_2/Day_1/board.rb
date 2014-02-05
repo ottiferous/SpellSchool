@@ -36,7 +36,7 @@ class Board
   end
   
   def draw_board
-    self.draw_top_magin
+    # self.draw_top_margin
     (0..@size.first-1).each do |y|
       (0..@size.last- 1).each do |x|
         print @tiles[x][y].display
@@ -67,7 +67,7 @@ class Board
   
   def reveal(position)
     
-    revealed_tile = @tiles[position.first][position.last]
+    revealed_tile = self.select_tile(position)
     return 0 if revealed_tile.checked
     
     revealed_tile.checked = true unless revealed_tile.bomb
@@ -97,6 +97,11 @@ class Board
       else
       revealed_tile.display = " "
     end
+  end
+  
+  def valid_tile?(pos)
+    x,y = pos
+    (0..@size[0]).cover?(x) && (0..@size[1]).cover?(y)
   end
   
 end

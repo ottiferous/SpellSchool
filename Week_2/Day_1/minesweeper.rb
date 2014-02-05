@@ -1,5 +1,5 @@
-require 'tile.rb'
-require 'board.rb'
+require './tile.rb'
+require './board.rb'
 
 class Game
 
@@ -9,8 +9,8 @@ class Game
     @board = Board.new(size, bombs)
     @bomb_locations = @board.find_bombs
     @flag_symbol = symbol
-    @blank_symbol = "\u{25A2}"
-    @bomb_symbol = "\u{22C7}"
+    @blank_symbol = "\u25A2"
+    @bomb_symbol = "\u22C7"
   end
 
   def bomb_tiles
@@ -31,10 +31,11 @@ class Game
 
   def get_input
 
+    input = input
     loop do
       print "\n> "
-      input.map!(&:to_i)
       input = gets.chomp.split(",")
+      input.map!(&:to_i)
       break if valid_input?(input)
     end
       
@@ -48,9 +49,8 @@ class Game
   end
   
   def valid_input?(raw_input)
-    raw_input[0].include? @flag_symbol &&
-    raw_input[1].between? (0,@board.size[0]) &&
-    raw_input[2].between? (0,@board.size[1])
+    pos = [raw_input[0], raw_input[1]]
+    (raw_input[0] == @flag_symbol) || (@board.valid_tile? pos)
   end
 
   def won?
@@ -79,4 +79,11 @@ class Game
     puts "YOU DIED :(" if dead == true
   end
 
+end
+
+if __FILE__ == $PROGRAM_NAME
+  
+  g = Game.new
+  g.run
+  
 end
