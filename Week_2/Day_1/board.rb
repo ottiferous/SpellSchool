@@ -5,12 +5,16 @@ class Board
   
   def initialize(size, num_of_bombs)
     @size = size
-    @tiles = Array.new(size.first){ Array.new(size.last)}
+
+    x_pos, y_pos = size
+    @tiles = Array.new(x_pos){ Array.new(y_pos) {} }
+    
     @tiles.each_with_index do |row, row_index|
-      @size.last.times do |col_index|
+      y_pos.times do |col_index|
         row[col_index] = Tile.new([row_index, col_index], self)
       end
     end
+    
     seed_bombs(num_of_bombs)
   end
   
@@ -27,18 +31,18 @@ class Board
     end
   end
   
-  def select_tile(coordinates)
-    self.tiles[coordinates.first][coordinates.last]
+  def select_tile(pos)
+    self.tiles[pos.first][pos.last]
   end
   
   def draw_top_margin
-    size.first.times { |num| print "#{num} " }
+    @size.first.times { |num| print "#{num} " }
   end
   
   def draw_board
     # self.draw_top_margin
-    (0..@size.first-1).each do |y|
-      (0..@size.last- 1).each do |x|
+    (0...@size.first).each do |y|
+      (0...@size.last).each do |x|
         print @tiles[x][y].display
         print "\u25E6"
       end
@@ -68,13 +72,10 @@ class Board
   def reveal(position)
     
     revealed_tile = self.select_tile(position)
+    
     return 0 if revealed_tile.checked
-    
     revealed_tile.checked = true unless revealed_tile.bomb
-    
-    if revealed_tile.bomb
-      return nil
-    end
+    return nil if revealed_tile.bomb
     
     neighbors = revealed_tile.neighbors
     
@@ -87,14 +88,15 @@ class Board
   end
   
   def neighbor_bombs(revealed_tile, neighbors)
+    
     # will change display to number of bombs nearby
     neighbor_bombs = 0
     neighbors.each do |tile|
-      neighbor_bombs += 1 if tile.bomb == true
+      neighbor_bombs += 1 if tile.bomb
     end
     if neighbor_bombs > 0
       revealed_tile.display = neighbor_bombs
-      else
+    else
       revealed_tile.display = " "
     end
   end

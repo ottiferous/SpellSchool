@@ -81,6 +81,7 @@ class Game
 
 end
 
+# Start the game if called from the command line via Ruby
 if __FILE__ == $PROGRAM_NAME
   
   g = Game.new
